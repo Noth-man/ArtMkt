@@ -1,0 +1,51 @@
+{{define "title"}}{{.title}}{{end}}
+
+{{define "content"}}
+  <div class="mypage-box-flex">
+    <div class="mypage-box mypage-flex-select">
+      <a href="/personal-information"><div class="mypage-select select-personal-information"><p>個人情報</p></div></a>
+      <a href="/mycart"><div class="mypage-select select-mycart"><p>カート</p></div></a>
+      <a href="/purchase-history"><div class="mypage-select select-purchase-history" style="background-color: #e0fff8;"><p>購入履歴</p></div></a>
+      <a href="/registered-items"><div class="mypage-select select-registered-items"><p>登録した商品</p></div></a>
+      <a href="/sell-items-form"><div class="mypage-select select-sell-items-form"><p>出品登録フォーム</p></div></a>
+      <a href="/myfollow"><div class="mypage-select select-mycart"><p>フォロー/フォロワー</p></div></a>
+    </div>
+    <div class="mypage-box mypage-content">
+
+      <div class="mypage-title"><p>購入した商品</p></div>
+      <p style="margin: 5px 0 5px 5px; color: gray">
+        商品が到着したら、「到着完了」ボタンを押してください。
+      </p>
+      <div class="user-product-flex-box">
+        {{ $csrfToken := .csrfToken }}
+        {{range .products}}
+        <div class="user-product-box">
+          <div class="user-product-img"><img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.Id}}/image1.jpg"  width="120px" height="80px" alt="" style="vertical-align: top;"></div>
+          <div class="user-product-details">
+            <div class="user-product-name"><p>{{.ItemName}}</p></div>
+            <!---
+            <div class="user-product-description">説明：{{.Description}}</div>
+            -->
+            <div class="user-product-amount"><p>価格：{{.Amount}}円＋消費税</p></div>
+            {{if .Arrival}}
+              <p style="color: red;">到着済</p>
+              <form action="/return-personal-information" method="post">
+                <input type="hidden" name="_csrf" value="{{$csrfToken}}">
+                <input type="hidden" name="productid" value="{{.Id}}">
+                <input type="hidden" name="product_userid" value="{{.UserId}}">
+                <input type="submit" value="販売者情報表示" class="all-input">
+              </form>
+            {{else}}
+              <form action="/arrival-success" method="post">
+                <input type="hidden" name="_csrf" value="{{$csrfToken}}">
+                <input type="hidden" name="productid" value="{{.Id}}">
+                <input type="submit" value="到着完了" class="all-input">
+              </form>
+            {{end}}
+          </div>
+        </div>
+        {{end}}
+      </div>
+    </div>
+  </div>
+{{end}}

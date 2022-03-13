@@ -1,0 +1,42 @@
+{{define "title"}}login{{end}}
+{{define "content"}}
+<div class="auth-box">
+  <div class="auth-form-box">
+    <div style="margin: 10px; text-align: center;"><p style="font-size: 20px;">ログインフォーム</p></div>
+    <div style="margin: 10px;">  
+      <p style="color: rgb(255, 0, 0);">{{.login_status}}</p>
+    </div>
+    <form action="/login" method="post" id="auth-form">
+      <input type="hidden" name="_csrf" value="{{.csrfToken}}">
+  
+      <div class="auth-input-box">
+        <div class="auth-input">
+          <p>username</p>
+          <input type="text" name="username" class="a-input" required="required">
+        </div>
+        <div class="auth-input">
+          <p>password</p>
+          <input type="password" name="password" class="a-input" required="required">
+        </div>
+      </div>
+      <div style="margin: 0 10px 10px 10px; font-size: 14px;">
+        This site is protected by reCAPTCHA and the Google
+        <a style="color: rgb(0, 132, 255);" href="https://policies.google.com/privacy">Privacy Policy</a> and
+        <a style="color: rgb(0, 132, 255);" href="https://policies.google.com/terms">Terms of Service</a> apply.
+      </div>
+      
+      
+      
+      <div class="auth-button">
+        <button class="g-recaptcha" data-sitekey="6LdLLCQeAAAAAC4bR8OJRuLuLoRUSR5nHSHxbFrw" data-callback='onSubmit' data-action='submit'>ログイン</button>
+        <script>
+          function onSubmit(token) {
+            document.getElementById("auth-form").submit();
+          }
+        </script>
+      </div>
+    </form>
+  
+  </div>
+</div>
+{{end}}

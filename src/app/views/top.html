@@ -1,0 +1,90 @@
+{{define "title"}}{{.title}}{{end}}
+
+{{define "content"}}
+<div class="top-content">
+  <div class="slider-box">
+    <div class="slider-yajirusi-left s-y"><img src="../static/img/左.svg" style="fill: grey;" alt=""></div>
+    <div class="s-c-box">
+      <a href="/campaign/1"><div class="slider-content1 s-c"><img src="../static/img/出品ガイド.png" alt=""></div></a>
+      <a href="/campaign/2"><div class="slider-content2 s-c"><img src="../static/img/artmktとは？.png" alt=""></div></a>
+      <a href="/campaign/3"><div class="slider-content3 s-c"><img src="../static/img/売上キャンペーン.png" alt=""></div></a>
+
+    </div>
+    <div class="slider-yajirusi-right s-y"><img src="../static/img/右.svg" style="fill: grey;" alt=""></div>
+
+  </div>
+
+</div>
+
+
+<div class="top-content">
+  <div class="top-content-title"><p>検索</p></div>
+  <div class="top-category-search">
+    <form action="/search" method="post" style="padding-bottom: 15px;">
+      <input type="hidden" name="_csrf" value="{{.csrfToken}}">
+      <div class="top-category-checkbox-flex">
+        <p>カテゴリー</p>
+        <select name="category" id="">
+          <option value="全て">全て</option>
+          <option value="その他">その他</option>
+          <option value="絵画">絵画</option>
+          <option value="版画">版画</option>
+          <option value="彫刻">彫刻</option>
+          <option value="オブジェ">オブジェ</option>
+          <option value="工芸">工芸</option>
+          <option value="写真">写真</option>
+        </select>
+        
+      </div>
+      <div class="top-price-search">
+        <p>価格上限</p>
+        <select name="f">
+          <option value="設定なし">設定なし</option>
+          <option value="10000">￥10000</option>
+          <option value="100000">￥100000</option>
+          <option value="500000">￥500000</option>
+          <option value="1000000">￥1000000</option>
+
+        </select> 〜 
+        <select name="l">
+          <option value="設定なし">設定なし</option>
+          <option value="10000">￥10000</option>
+          <option value="100000">￥100000</option>
+          <option value="500000">￥500000</option>
+          <option value="1000000">￥1000000</option>
+        </select>
+      </div>
+      <div>
+        <input type="submit" value="検索">
+      </div>
+    </form>
+  </div>
+</div>
+<div class="top-content">
+  <div class="top-content-title"><p>新着アイテム</p></div>
+  <div class="product-flex-box">
+    {{range .products}}
+    <a href="/product/{{.Id}}">
+      <div class="product-box">
+        <div class="product-hover"></div>
+        {{if eq .SoldOut "1"}}
+          <div class="product-img-box-top">
+            <img src="../static/img/SOLD OUTのラベルアイコン素材 2.svg" alt="" class="soldout-img">
+            <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.Id}}/image1.jpg" alt="" class="product-img">
+          </div>
+        {{else}}
+          <div class="product-img-box-top">
+            <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.Id}}/image1.jpg" alt="" class="product-img">
+          </div>
+        {{end}}
+        <div class="product-name"><p>{{.ItemName}}</p></div>
+        <!--
+        <div class="product-description"><p>説明：{{.Description}}</p></div>
+        -->
+        <div class="product-amount"><p>￥{{.Amount}}</p></div>
+      </div>
+    </a>
+    {{end}}
+  </div>
+</div>
+{{end}}

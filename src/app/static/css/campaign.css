@@ -1,0 +1,29 @@
+.campaign-title {
+    text-align: center;
+    margin-bottom: 10px;
+
+    padding: 10px 10px 0 10px;
+}
+
+.campaign-title h1{
+    font-size: 30px;
+    border-bottom: 0.3px solid gainsboro;
+}
+
+.campaign-center-main{
+    text-align: center;
+    margin: 10px;
+}
+
+.campaign-center-main p{
+    margin: 5px;
+}
+.campaign-center-main img {
+    width: 600px;
+}
+
+@media (max-width: 799px) {
+    .campaign-center-main img {
+        width: 300px;
+    }
+}

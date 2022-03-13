@@ -1,0 +1,13 @@
+{{define "title"}}本登録完了{{end}}
+{{define "content"}}
+<div class="auth-box">
+    <div class="auth-form-box">
+    <div style="text-align: center; margin: 10px 10px 10px 10px ;"><p>会員登録完了しました！</p></div>
+
+        <form action="/loginform">
+            <input type="hidden" name="_csrf" value="{{.csrfToken}}">
+            <div class="auth-button"><input type="submit" value="ログインする"></div>
+        </form>
+    </div>
+</div>
+{{end}}

@@ -1,0 +1,36 @@
+{{define "title"}}{{.title}}{{end}}
+
+{{define "content"}}
+<div class="help-box-flex">
+    <div class="help-box help-flex-select">
+      <a href="/help/sell-item-guide"><div class="help-select "><p>出品ガイド</p></div></a>
+      <a href="/help/buy-item-guide"><div class="help-select "><p>購入ガイド</p></div></a>
+      <a href="/help/rules-and-manners"><div class="help-select "><p>マナー・ルール</p></div></a>
+      <a href="/help/return-guide"><div class="help-select "><p>返品ガイド</p></div></a>
+      <a href="/help/shipping-guide"><div class="help-select "><p>発送ガイド</p></div></a>
+      <a href="/help/inquiry"><div class="help-select "style="background-color: #e0fff8;"><p>お問い合わせ</p></div></a>
+    </div>
+    <div class="help-box help-content">
+      <div class="help-title"><p>お問い合わせ</p></div>
+      {{if .post}}
+        <div style="margin: 10px;">
+          <p>送信完了</p>
+          <p>24時間に1回お問い合わせできます。</p>
+        </div>
+        
+      {{else}}
+        <p></p>
+      {{end}}
+      <div class="inquiry-content-box" style="margin: 10px;">
+        <form action="/help/post-inquiry" method="post">
+          <input type="hidden" name="_csrf" value="{{.csrfToken}}">
+          <div class="inquiry-name"><p>お名前</p><input type="text" name="name" required="required"></div>
+          <div class="inquiry-email"><p>返信先メールアドレス</p><input type="email" name="email" required="required"></div>
+          <div class="inquiry-text"><p>お問い合わせ内容</p><textarea name="inquiry" rows="20" maxlength="2000" required="required" style="width: 100%;"></textarea></div>
+          <div class="inquiry-submit"><input type="submit" value="送信"></div>
+          
+        </form>
+      </div>
+    </div>
+</div>
+{{end}}

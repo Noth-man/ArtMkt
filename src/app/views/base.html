@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{template "title" .}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../static/css/reset.min.css" />
+    <link rel="stylesheet" href="../static/css/base.css" />
+    <link rel="stylesheet" href="../static/css/header-3.css" />
+    <link rel="stylesheet" href="../static/css/top.css" />
+    <link rel="stylesheet" href="../static/css/product-page.css" />
+    <link rel="stylesheet" href="../static/css/mypage.css" />
+    <link rel="stylesheet" href="../static/css/cart.css" />
+    <link rel="stylesheet" href="../static/css/ragisted-item.css" />
+    <link rel="stylesheet" href="../static/css/sell-item.css" />
+    <link rel="stylesheet" href="../static/css/personal-information-input.css" />
+    <link rel="stylesheet" href="../static/css/personal-information.css" />
+    <link rel="stylesheet" href="../static/css/buyer-info.css" />
+    <link rel="stylesheet" href="../static/css/auth.css" />
+    <link rel="stylesheet" href="../static/css/purchase-confirmation.css" />
+    <link rel="stylesheet" href="../static/css/help.css" />    
+    <link rel="stylesheet" href="../static/css/user-product-page.css" /> 
+    <link rel="stylesheet" href="../static/css/myfollow.css" />   
+    <link rel="stylesheet" href="../static/css/slider.css" />
+    <link rel="stylesheet" href="../static/css/menu.css" />
+    <link rel="stylesheet" href="../static/css/campaign.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__wrapper">
+        <div class="site-header__start">
+          <a href="/" class="brand"><img src="../static/img/Original on Transparent.png" alt="" height="24px"></a>
+        </div>
+        <div class="site-header__end">
+          <nav class="nav">
+            <!--
+            <button class="nav__toggle" aria-expanded="false" type="button" style="top: 13px; color: rgb(0, 0, 0);background-color: rgb(255, 255, 255); border: 0.5px solid black;">
+              メニュー
+            </button>
+            -->
+            
+            <div class="menu-content-1">
+              {{if .login}}
+                <a href="/logout">ログアウト</a>
+                <a href="/help">ヘルプ</a>
+                <a href="/mypage/{{.username}}">マイページ</a>
+              {{else}}
+                <a href="/help">ヘルプ</a>
+                <a href="/loginform">ログイン</a>
+                <a href="/signupform">会員登録</a>
+              {{end}}
+            </div>
+
+              <div class="menu-icon menu-open"><img src="../static/img/bars_24.svg" alt="" width="24px" height="24px"></div>
+              <div class="menu-icon menu-close"><img src="../static/img/913_x_h.svg" alt="" width="24px" height="24px"></div>
+
+              <div class="menu-content-2">
+                {{if .login}}
+                  <a href="/logout">ログアウト</a>
+                  <a href="/help">ヘルプ</a>
+                  <a href="/mypage/{{.username}}">マイページ</a>
+                {{else}}
+                  <a href="/help">ヘルプ</a>
+                  <a href="/loginform">ログイン</a>
+                  <a href="/signupform">会員登録</a>
+                {{end}}
+              </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="content__wrapper">
+        {{template "content" .}}
+      </div>
+    </div>
+
+    
+
+    <script src="../static/js/header-3.js"></script>
+    <script src="../static/js/icon.js"></script>
+    <script src="../static/js/product-img.js"></script>
+    <script src="../static/js/slider.js"></script>
+    <script src="../static/js/menu.js"></script>
+
+  </body>
+</html>

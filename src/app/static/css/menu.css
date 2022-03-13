@@ -1,0 +1,56 @@
+
+.menu-open{
+    display: none;
+}
+.menu-close{
+    display: none;
+}
+.menu-content-1 a{
+  margin-right: 10px;
+}
+.menu-content-2 a{
+    margin: 10px;
+}
+.menu-content-2 a:hover{
+    background-color: #c8faef;
+}
+.menu-content-2{
+    display: none;
+    
+}
+@media (max-width: 799px) {
+    .menu-content-2{
+        background-color: #ffffff;
+        z-index: 1000;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        display: block;
+        
+    }
+    .menu-content-2.active{
+        visibility: visible;
+        opacity: 0.8;
+        background-color: #cff5ed;
+        transform: translateY(0); 
+        display: block;
+        display: flex;
+        flex-flow: column;
+        justify-content: right;
+    }
+          
+    .menu-open{
+        display: block;
+    }
+    .menu-content-1{
+        display: none;
+    }
+}
+
+
+

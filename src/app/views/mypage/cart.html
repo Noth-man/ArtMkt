@@ -1,0 +1,49 @@
+{{define "title"}}{{.title}}{{end}}
+
+{{define "content"}}
+<div class="mypage-box-flex">
+  <div class="mypage-box mypage-flex-select">
+    <a href="/personal-information"><div class="mypage-select select-personal-information"><p>個人情報</p></div></a>
+    <a href="/mycart"><div class="mypage-select select-mycart" style="background-color: #e0fff8;"><p>カート</p></div></a>
+    <a href="/purchase-history"><div class="mypage-select select-purchase-history"><p>購入履歴</p></div></a>
+    <a href="/registered-items"><div class="mypage-select select-registered-items"><p>登録した商品</p></div></a>
+    <a href="/sell-items-form"><div class="mypage-select select-sell-items-form"><p>出品登録フォーム</p></div></a>
+    <a href="/myfollow"><div class="mypage-select select-mycart"><p>フォロー/フォロワー</p></div></a>
+  </div>
+  <div class="mypage-box mypage-content">
+    <div class="mypage-title"><p>My カート</p></div>
+    <div class="cart-product-flex-box">
+      {{ $csrfToken := .csrfToken }}
+      {{range .products}}
+      <div class="cart-product-box">
+        <div class="cart-img"><a href="/product/{{.Id}}"><img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.Id}}/image1.jpg" alt="" style="vertical-align: top;" ></a></div>
+        <div class="cart-p-detail">
+          <div class="cart-product-name">
+            <p>{{.ItemName}}</p>
+          </div>
+          <div class="cart-product-amount">
+            <p>税込み価格：{{.Amount}}円</p>
+          </div>
+          <form action="/delete-cart" method="post">
+            <input type="hidden" name="_csrf" value="{{$csrfToken}}">
+            <input type="hidden" name="delete_item" value="{{.Id}}">
+            <input type="submit" value="カートから削除" class="all-input">
+          </form>
+        </div>
+      </div>
+      {{end}}
+    </div>
+    <div class="mypage-title"><p>小計</p></div>
+    <div class="mycart-subtotal" style="margin-left: 5px;">
+      <p>商品数：個</p>
+      <p>合計価格(税込)：￥{{.totalAmount}}</p>
+    </div>
+    <form action="/purchase-confirmation-cart" method="post" style="margin: 0 0 5px 5px;">
+      <input type="hidden" name="_csrf" value="{{$csrfToken}}">
+      <input type="submit" value="まとめて購入" class="all-input">
+    </form>
+  </div>
+</div>
+
+  
+{{end}}

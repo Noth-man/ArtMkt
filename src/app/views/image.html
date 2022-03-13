@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Image</title>
+        <meta name="description" content="A demo of a payment on Stripe" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="../static/css/others.css" />
+        <script src="https://unpkg.com/js-image-zoom@0.7.0/js-image-zoom.js" type="application/javascript"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        
+    </head>
+    <body>
+        <div id="overlay-product">
+            <div id="overlay">
+              
+                <div class="overlay-content-box overlay-inner">
+                    <div class="ol-header">
+                        <a href="/product/{{.productid}}" style="text-decoration: none;"><p class="ol-close">×</p></a>
+                    
+                    </div>
+                    <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.productid}}/image1.jpg" alt="" style="vertical-align: top;" id="overlay-img-1">
+                    <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.productid}}/image2.jpg" alt="" style="vertical-align: top;" id="overlay-img-2">
+                    <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.productid}}/image3.jpg" alt="" style="vertical-align: top;" id="overlay-img-3">
+
+                </div>
+
+                <div class="o-select-img-box">
+                    <div class="o-select-img select-img-1"><img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.productid}}/image1.jpg" alt="" style="vertical-align: top;" id="s-img-1"></div>
+                    <div class="o-select-img select-img-2"><img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.productid}}/image2.jpg" alt="" style="vertical-align: top;" id="s-img-2"></div>
+                    <div class="o-select-img select-img-3"><img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.productid}}/image3.jpg" alt="" style="vertical-align: top;" id="s-img-3"></div>
+                    
+                </div>
+            </div>
+        </div>
+        <script src="../static/js/product-img.js"></script>
+        
+    </body>
+</html>

@@ -1,0 +1,70 @@
+{{define "title"}}{{.title}}{{end}}
+
+{{define "content"}}
+<div style="background-color: white;">
+  <div class="product-p-title"><p>商品</p></div>
+  <div class="product-content-flex">
+    
+    <div class="p-page-detail product-img-box">
+      <div class="active-img">
+        <a href="/image/{{.ProductId}}">
+          {{if eq .SoldOut "1"}}
+            <div class="product-img-content">
+              <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.ProductId}}/image1.jpg" alt="" style="vertical-align: top;" id="p-img-soldout-1">
+              <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.ProductId}}/image2.jpg" alt="" style="vertical-align: top;" id="p-img-soldout-2">
+              <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.ProductId}}/image3.jpg" alt="" style="vertical-align: top;" id="p-img-soldout-3">
+
+            </div>
+            <div class="product-img-content-sold">
+              <img src="../static/img/SOLD OUTのラベルアイコン素材 2.svg" alt=""id="product-sold-img">
+            </div>
+          {{else}}
+            <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.ProductId}}/image1.jpg"  alt="" class="product-img-content" style="vertical-align: top;" id="p-img-1">
+            <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.ProductId}}/image2.jpg"  alt="" class="product-img-content" style="vertical-align: top;" id="p-img-2">
+            <img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.ProductId}}/image3.jpg"  alt="" class="product-img-content" style="vertical-align: top;" id="p-img-3">
+
+          {{end}}
+        </a>
+      </div>
+      <div class="none-active-img">
+        <div class="none-active none-active1"><img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.ProductId}}/image1.jpg" alt="" style="vertical-align: top;" id="product-img-c p-img-select-1"></div>
+        <div class="none-active none-active2"><img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.ProductId}}/image2.jpg" alt="" style="vertical-align: top;" id="product-img-c p-img-select-2"></div>
+        <div class="none-active none-active3"><img src="https://artmkt.s3.ap-northeast-1.amazonaws.com/item/productid{{.ProductId}}/image3.jpg" alt="" style="vertical-align: top;" id="product-img-c p-img-3select-"></div>
+      </div>
+    </div> 
+    
+    
+    <div class="p-page-detail product-detail">
+      <div class="item-page-detail item-name"><p style="font-size: 22px;">{{.ItemName}}</p></div>
+      <div class="item-page-detail item-description">
+        <p style="color: rgb(138, 138, 138); font-weight: 400; font-size: 20px; margin-bottom: 5px;">商品説明</p>
+        <p style="margin-bottom: 3px; white-space:pre-wrap;">{{.Description}}</p>
+      </div>
+      <div class="item-page-detail item-amount"><p>価格：￥{{.Amount}} (税込み)</p></div>
+      <div class="item-page-detail seller-name">
+        <p>出品者：<a href="/userproduct/{{.UserId}}" style="color: dodgerblue;">{{.ProductUsername}}</a></p>
+      </div>
+      
+      {{if eq .SoldOut "1"}}
+      {{else}}
+      
+      <div class="item-page-detail add-cart-box">
+        <p style="font-size: 12px; color: rgb(100, 100, 100);">カートに追加後、<a href="/mycart" style="color: dodgerblue;">カートページ</a>でまとめて購入できます。</p>
+        {{if .cart}}
+          <p style="font-size: 12px; color: rgb(255, 0, 0); margin: 10px 0;">カートに追加済です。</p>
+        {{else}}
+          <form action="/addcart" method="post">
+            <input type="hidden" name="_csrf" value="{{.csrfToken}}">
+            <input type="hidden" name="cart" value="{{.ProductId}}">
+            <input type="submit" value="カートに追加" class="add-cart-submit">
+          </form>
+        {{end}}
+        
+      </div>
+      {{end}}
+      
+    </div>
+  </div>
+</div>
+{{end}}
+

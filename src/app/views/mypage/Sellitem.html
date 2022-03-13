@@ -1,0 +1,88 @@
+{{define "title"}}{{.title}}{{end}}
+
+{{define "content"}}
+<div class="mypage-box-flex">
+  <div class="mypage-box mypage-flex-select">
+    <a href="/personal-information"><div class="mypage-select select-personal-information"><p>個人情報</p></div></a>
+    <a href="/mycart"><div class="mypage-select select-mycart"><p>カート</p></div></a>
+    <a href="/purchase-history"><div class="mypage-select select-purchase-history"><p>購入履歴</p></div></a>
+    <a href="/registered-items"><div class="mypage-select select-registered-items"><p>登録した商品</p></div></a>
+    <a href="/sell-items-form"><div class="mypage-select select-sell-items-form"  style="background-color: #e0fff8;"><p>出品登録フォーム</p></div></a>
+    <a href="/myfollow"><div class="mypage-select select-mycart"><p>フォロー/フォロワー</p></div></a>
+  </div>
+  <div class="mypage-box mypage-content">
+    <div class="mypage-title"><p>商品登録</p></div>
+    <form action="/itemregist" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="_csrf" value="{{.csrfToken}}">
+      <div class="regist-item-form">
+        <div style="margin-bottom: 10px;">
+          <p style="color: gray;">商品を登録(出品)には、返品先情報と売上の振込先情報を登録する必要があります。</p>
+        </div>
+        {{if .stripeid}}
+          <div style="margin-bottom: 10px;">
+            <p style="color: rgb(255, 0, 0);">振込先情報は登録済です。</p>
+          </div>
+        {{else}}
+        <div style="margin-bottom: 10px;">
+          <p style="color: rgb(255, 0, 0);">振込先情報は未登録です。</p>
+          <a href="/create-an-express-account" style="color: rgb(0, 155, 255); font-size: 20px;">登録する</a>
+        </div>
+        {{end}}
+        {{if .personal}}
+          <div style="margin-bottom: 10px;">
+            <p style="color: rgb(255, 0, 0);">返品先情報は登録済です。</p>
+          </div>
+        {{else}}
+          <div style="margin-bottom: 10px;">
+            <p style="color: rgb(255, 0, 0);">返品先情報は未登録です。</p>
+            <a href="/return-personal-information-input" style="color: rgb(0, 155, 255); font-size: 20px;">登録する</a>
+          </div>
+        {{end}}
+        <div class="r-form ragist-form-item-name">
+          <p>商品名</p>
+          <input type="text" name="itemname" required="required" maxlength="100" style="width: 100%;">
+        </div>
+        <div class="r-form ragist-form-item-description">
+          <p>商品説明</p>
+          <textarea name="item-description" rows="10" maxlength="800" required="required" style="width: 100%;"></textarea>
+        </div>
+        <div class="r-form ragist-form-item-price">
+          <p>商品価格</p><input type="number" name="price" required="required" max="99999999">円
+        </div>
+        <div class="ragist-form-item-category">
+          <p>カテゴリー</p>
+          <select name="category" id="">
+            <option value="その他">その他</option>
+            <option value="絵画">絵画</option>
+            <option value="版画">版画</option>
+            <option value="彫刻">彫刻</option>
+            <option value="オブジェ">オブジェ</option>
+            <option value="工芸">工芸</option>
+            <option value="写真">写真</option>
+            
+          </select>
+        </div>
+        <div class="ragist-form-item-image">
+          <p>商品画像1</p><input type="file" name="image" accept=".png, .jpg" required="required">
+        </div>
+        <div class="ragist-form-item-image">
+          <p>商品画像2</p><input type="file" name="image2" accept=".png, .jpg" required="required">
+        </div>
+        <div class="ragist-form-item-image">
+          <p>商品画像3</p><input type="file" name="image3" accept=".png, .jpg" required="required">
+        </div>
+        <div class="agreement" style="margin: 10px 5px 10px 5px; border: 1px solid rgb(230, 230, 230);">
+          <object data="../static/txt/agreement.txt" type="text/plain" style="width: 100%;"></object>
+        </div>
+        <div class="p-c-checkbox">
+            <p>規約に同意</p>
+            <input type="checkbox" required="required">
+        </div>
+        <div class="ragist-item-submit" style="margin-top: 10px;"><input type="submit" value="登録" class="all-input"></div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+{{end}}
