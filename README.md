@@ -1,7 +1,7 @@
 # 開発
 artmkt  
 美術品のマーケットプレイス
-https://art--mkt.com/
+https://art--mkt.com/ 現在閉じてます
 
 # 機能
 ユーザー認証  
